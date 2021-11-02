@@ -1,3 +1,3 @@
 # mohamadwehbe-et3-tasks
 Javascript branch
-Answer of first part is compyte.js
+Answer of first part is compute.js

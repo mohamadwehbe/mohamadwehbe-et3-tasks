@@ -3,14 +3,12 @@ const readline = require('readline').createInterface({
     output: process.stdout
   });
    
-  readline.question('Place Order : ', nb => {
-    if(nb % 2 === 0) {
+  readline.question('Place Order : ', bag => {
         large = 0;
         medium=0;
         small=0;
-        console.log(`Your Order is : ${nb}-lb of coffee!`);
-        bags = nb/2
-        console.log(`Number of Bags : ${bags} bags of coffee!`);
+        console.log(`Number of Bags: ${bag} bags of coffee!`);
+        bags = bag ;
         while (bags >= 20) {
             large++;
             bags = bags - 20;
@@ -23,11 +21,12 @@ const readline = require('readline').createInterface({
         small++;
         bags = bags - 5;
         }
-        console.log(`Number of Large Bags : ${large} bags of coffee!`);
-        console.log(`Number of Medium Bags : ${medium} bags of coffee!`);
-        console.log(`Number of Small Bags : ${small} bags of coffee!`);
-        console.log(`Cost is : ${large*1.80+medium*1.00+small*0.60+(nb/2)*5.50}$!`);
-    }
-    else console.log(`Place Again!`);
+        console.log(`The total price of the coffee ordered is : ${bag*5.50}$`)
+        console.log(`Number of Large Boxes is ${large} , the price of large boxes used is ${large*1.80} `);
+        console.log(`Number of Medium Boxes : ${medium} the price of medium boxes used is ${medium*1.00} `);
+        console.log(`Number of Small Boxes : ${small} the price of small boxes used is ${small*0.60} `);
+        if(bags === 0) console.log('The small boxes are full');
+        else console.log(`The last small box has ${5+bags} bags of coffee`);
+        console.log(`The total Cost is : ${large*1.80+medium*1.00+small*0.60+(bag)*5.50}$`);
     readline.close();
   });

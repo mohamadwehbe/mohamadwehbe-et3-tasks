@@ -1,0 +1,199 @@
+Warm up :
+
+1.What are the deployment days and time ? Why ?
+
+ .Deployment days are Monday, Tuesday, and Wednesday.
+ .Deployment hours are between 9:00 A.M and 3:00 P.M.
+  Because the app release should take the OK on Thursday to
+  do the first try to get IOS acceptance, then Friday at
+  2:00 is the last chance to submit to IOS.
+
+2.As a software engineer, what should you do before the deployment ?
+
+ .Before deploying, every developer should check and verify
+  the code and the configuration.
+
+3.What does on-call mean ?
+
+  .It's whe nthe et3 software engineers take turns in
+  .handling the on-call duty which consists of :
+    .Daily routine checks for database, servers, apps and
+     API’s
+    .Monitoring daily app analytics to make sure everything
+     is as expected and filling them on the on-call sheet
+    .Follow up with the QA team on discovered production
+     issues, and share with the dev team according to
+     severity and importance
+
+4.What should you do before running a query on production ?
+
+  .Share every query on production before running (Slack
+   database channel).
+
+5.If you were changing something on production, and you did a mistake, what is the first thing you should do ?
+
+  .Inform the team ASAP .
+
+6.We are working on the new app release 7.4.0, describe the process if you were assigned a specific feature.
+
+ .Check the task is documented correctly
+ .Start from the correct parent branch
+ .Create your correct child branch
+ .Write your code and commit
+ .Create a pr to the parent branch
+ .Add your pr to the code index sheet
+ .When your code is merged mark the correct task as done
+
+7.When is the correct time to send your code for review ?
+
+  .No Code is merged before the review of any other
+   developer.
+  .Commit your code in small, working chunks and write a
+   detailed commit message that will help developers find
+   and understand bugs that may have been introduced in that
+   commit. Just summarize what you did and why you did it.
+  .The third time you write the same piece of code is the
+   right time to extract it into a general-purpose helper
+   (and write tests for it).
+
+8.What does et3 worker mean ?
+
+  .It means the et3 main server module, which has a
+   Production and Staging according to the faq and the
+   architecute
+
+9.Describe the process to add a new issue.
+
+  .Every day the dev team should make a small meeting from
+   11:00 A.M to 11:30 A.M :
+   Every developer shares what he has done.
+   Every developer shares what he is planning to do.
+
+Installation and sharing work :
+
+1.How do you create a branch called i-am-awesome ?
+	
+  git branch i-am-awesome
+
+2.How do you commit to the branch with message "You are awesome" ?
+
+  git checkot i-am-awesome
+  Then when I add "something" to the branch I write the
+  command : git add "something"
+  Then : git commit -m "You are awesome"
+
+3.How do I push the branch to github ?
+
+  git push -u origin branch_name
+
+4.How do I ignore files inside my project ?
+
+  .Add the file in .gitignore
+  .Run the command: Bash Copy. git rm --cached <file>
+  .Commit the removal of the file and the updated .gitignore
+   to the repo
+
+5.Change 3 files : x, y, z.
+  .How do I add, commit and push only x and y ?
+
+  git add -u
+  git reset -- z
+  git commit -m "changing x and y"
+  git push
+
+6.Oops I pushed a wrong commit, how do I revert to an old commit ?
+
+ git stach
+ git log (to know which on is the <commit-hash>)
+ git checkout <commit-hash>
+ (Then we change the code)
+ git checkot main (or the branch name)
+ git stach pop (if we did stach any uncommited changes)
+ git checkout -b branch-name <commit-hash>
+ git reset --hard <commit-hash>(go back to previous commit
+  and discard the latest ones)
+ git revert HEAD~<number of commit yo want to go before the
+  latest commit>
+ or: git log (to find the commits to revert)
+ and: git revert hash1 hash2... and so on 
+
+7.Someone else pushed to my branch, how do I get the changes ?
+
+  By pulling the commit that someone else made on my branch:
+  if everyone of you has a remote:
+  git remote add coworker_remote url_to_their_repo
+  git remote update
+  git merge coworker_remote/WIP-my-branch
+  if not just :
+  git fetch origin <your_branch_name>
+  to get the change
+
+8.How do I open a pull request ?
+
+  Find a project you want to contribute to.
+  Fork it.
+  Clone it to your local system.
+  Make a new branch.
+  Make your changes.
+  Push it back to your repo.
+  Click the Compare & pull request button.
+  Click Create pull request to open a new pull request.
+
+  command:
+  git request-pull [-p] <start> <url> [<end>]
+
+  example:
+
+  Imagine that you built your work on your main branch on
+  top of the v1.0 release, and want it to be integrated to
+  the project.
+
+  First you push that change to your public
+  repository for others to see:
+
+  git push https://git.ko.xz/project main
+  
+  Then, you run this command:
+  git request-pull v1.0 https://git.ko.xz/project main
+  
+  which will produce a request to the upstream, summarizing
+  the changes between the v1.0 release and your main, to
+  pull it from your public repository.
+
+9.What are conflicts when opening a pull request ?
+
+  When you create a pull request Bitbucket automatically
+  compares the source with your update and the destination
+  with the original code. If anyone else has made changes in
+  the destination to the same code you touched, we'll notify
+  you of conflicts when you attempt to merge.
+
+10.How do I fix conflicts within a pull request ?
+
+ Pull the most recent version of the repository from
+ Bitbucket.
+
+ $ git pull
+ Checkout the source branch.
+
+ $ git checkout <feature_branch>
+ Pull the destination branch into the source branch. At this
+ point, pulling the destination will try to merge it with
+ the source and reveal all the conflicts.
+
+ $ git pull origin <destination_branch>
+
+ Note: Make sure you're in your repository directory.
+
+11.I changed file x and my colleague changed file y, how do we merge our files together?
+
+ click  Pull requests.
+ click the pull request you'd like to merge.
+ Merge pull request
+ Squash and merge 
+ Rebase and merge
+ Confirm merge, Confirm squash and merge, or Confirm rebase
+ and merge.
+
+ Or use commands:
+ git request-pull , git rebase , and git merge

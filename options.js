@@ -11,13 +11,13 @@ while (!guess) {
     guess = true;
   }
   else if( option === "a" || option === "A" )
-    console.log(` option is : ${option} `);
+    console.log(` Add order `);
   else if( option === "b" || option === "B" )
-    console.log(` option is : ${option} `);
+    console.log(` Delete order `);
   else if( option === "c" || option === "C" )
-    console.log(` option is : ${option} `);
+    console.log(` Find order `);
   else if( option === "d" || option === "D" )
-    console.log(` option is : ${option} `);
+    console.log(` Checkout `);
   else
     console.log(` ${option} is not an option, choose again! `);
 }

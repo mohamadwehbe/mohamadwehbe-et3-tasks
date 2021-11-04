@@ -5,3 +5,4 @@ Answer of second part is each5seconds.js
 Answer of third part is sort.js
 Answer of fourth part is above280.js
 Answer of fifth part is discount.js
+Part of Answer of last part : index.html / script.js / options.js / style.css

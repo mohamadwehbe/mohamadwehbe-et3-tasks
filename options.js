@@ -1,10 +1,5 @@
 const prompt = require('prompt-sync')({sigint: true});
 
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
 let guess = false;
 
 const orders = [];
@@ -12,23 +7,27 @@ const orders = [];
 while (!guess) {
 
   let option = prompt('choose an option: ');
-
+//Exit
   if (option === "q" || option === "Q" ) {
     console.log('exit program!');
     guess = true;
   }
+//Add order
   else if( option === "a" || option === "A" ) {
     let order = prompt('Add an order: ');
       orders.push(order);
   }
+//Delete order
   else if( option === "b" || option === "B" ) {
     let order = prompt('Delete an order: ');
     b = orders.filter(e => e === order);
     b.forEach(f => orders.splice(orders.findIndex(e => e === f),1));
     console.log(orders);
   }
+//Find order
   else if( option === "c" || option === "C" )
     console.log(` Find order `);
+//Checkout(calculate and print all orders)
   else if( option === "d" || option === "D" ) {
     console.log(` Checkout: `);
     orders.map(order=>{

@@ -1,4 +1,5 @@
 const prompt = require('prompt-sync')({sigint: true});
+var _ = require('lodash/core');
 
 let guess = false;
 
@@ -25,8 +26,14 @@ while (!guess) {
     console.log(orders);
   }
 //Find order
-  else if( option === "c" || option === "C" )
-    console.log(` Find order `);
+  else if( option === "c" || option === "C" ) {
+  let find = prompt('Find an order: ');
+  bool = _.some(orders, order=>order === find);
+  if (bool) {
+    order = _.filter(orders, order=>order === find);
+    console.log(order);
+  }
+  }
 //Checkout(calculate and print all orders)
   else if( option === "d" || option === "D" ) {
     console.log(` Checkout: `);

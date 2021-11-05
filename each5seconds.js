@@ -29,4 +29,4 @@ setInterval(function(){
         else console.log(`The last small box has ${5+bags} bags of coffee`);
         console.log(`The total Cost is : ${large*1.80+medium*1.00+small*0.60+(a[i])*5.50}$`);
     }
-}, 5000);
+}, 5000);//Runs each 5 seconds

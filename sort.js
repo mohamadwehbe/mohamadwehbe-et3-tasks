@@ -17,5 +17,6 @@ for(i =0 ; i<a.length;i++) {
     small++;
     bags = bags - 5;
     }
+    console.log(`The order is : ${a[i]}`);
     console.log(`The total Cost is : ${large*1.80+medium*1.00+small*0.60+(a[i])*5.50}$`);
 }

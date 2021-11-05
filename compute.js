@@ -4,6 +4,7 @@ const readline = require('readline').createInterface({
   });
    
   readline.question('Place Order : ', bag => {
+      //count large,medium,and small
         large = 0;
         medium=0;
         small=0;

@@ -1,0 +1,21 @@
+I. Array :
+1. var array = new Array("apples", "oranges"); or var array = ["apples","oranges"];
+2. array.map() : Generally map() method is used to iterate over an array and calling function on every element of array.
+                 It returns a new array and elements of arrays are result of callback function.
+    array.map(row=>{
+        row = row * 3.5 ;
+    })
+3. array.filter() : The filter() method creates an array filled with all array elements that pass a test (provided by a function).
+                        filter() does not execute the function for empty array elements.
+                        filter() does not change the original array.
+                    returns a value that coerces(gives) to true.
+    intern = array.filter(row=>row.status === "intern");
+    internMore23 = array.filter(row=> row.status === "intern" && row.age > 23);
+4. array.reduce() :  reduce the array to a single value and executes a provided function for each value of the array (from left-to-right).
+                     returns a single value which is the function's accumulated result
+                     reduce() does not execute the function for empty array elements.
+    array.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue.age;
+    }, 0);
+
+II. Promises :

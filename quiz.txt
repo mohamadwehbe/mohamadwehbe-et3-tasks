@@ -1,5 +1,5 @@
 I. Array :
-1. var array = new Array("apples", "oranges"); or var array = ["apples","oranges"];
+1. const array = ["apples","oranges"];
 2. array.map() : Generally map() method is used to iterate over an array and calling function on every element of array.
                  It returns a new array and elements of arrays are result of callback function.
     array.map(row=>{

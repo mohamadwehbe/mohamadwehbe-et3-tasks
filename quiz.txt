@@ -66,4 +66,18 @@ II. Promises :
     A callback is a function passed into another function as an argument to be executed later.
 
 III. Lodash :
-1.
+
+1. max = 0 ;
+   _.map(employees, emp => {
+     if(emp.age > max) max = emp.age;
+   });
+   // max is the highest age
+
+2. let descending = _.orderBy(employees, ['age'], ['desc']);
+
+3. let ascending = _.orderBy(employees, ['age'], ['asc']);
+
+4. age = _.filter(employees, emp=>emp.name === 'Anthony');
+
+5. Getting the name of the developer : developer = _.filter(employees, emp=>emp.status === 'Developer');
+   Snake case the string : _.snakeCase(developer); // developer is a string = 'Hovig'

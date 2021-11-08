@@ -27,9 +27,9 @@ II. Promises :
     either a resolved value, or a reason that it's not resolved (e.g., a network error occurred).
     A promise may be in one of 3 possible states: fulfilled, rejected, or pending.
 
-3. Promise.resolve('Success').then(function(value) {
+3. Promise.resolve('Success').then((value)=> {
    console.log(value); // "Success"
-   }, function(value) {
+   }, (value)=> {
    // not called
    });
 
@@ -44,6 +44,8 @@ II. Promises :
 
 5. In my view, unless a library or legacy codebase forces you to use then/catch,
    the better choice for readability and maintainability is async/await.
+   for some more info, even if a library does make you use it,
+   you can create a promise and return it as async/await
 
 6. The Promise.all() method takes an iterable of promises as an input,
    and returns a single Promise that resolves to an array of the results of the input promises.
@@ -59,7 +61,7 @@ II. Promises :
    Promise.race() also accepts an array of promises, but returns the first promise that is settled.
    So it depends of what we need from those options.
 
-9. setTimeout is asynchronous
+9. setTimeout is synchronous in nature and it runs synchronously and queues a function to run later.
 
 10. How callback function works: We will pass a function into a timeout as an argument,
     and our function will be executed after the timeout is executed.
@@ -72,12 +74,14 @@ III. Lodash :
      if(emp.age > max) max = emp.age;
    });
    // max is the highest age
+   OR: let max_age = _.maxBy(employees, emp=>emp.age);
 
 2. let descending = _.orderBy(employees, ['age'], ['desc']);
 
 3. let ascending = _.orderBy(employees, ['age'], ['asc']);
 
-4. age = _.filter(employees, emp=>emp.name === 'Anthony');
+4. employee = _.filter(employees, emp=>emp.name === 'Anthony');
+   age = _.get(employee,'age');
 
 5. Getting the name of the developer : developer = _.filter(employees, emp=>emp.status === 'Developer');
    Snake case the string : _.snakeCase(developer); // developer is a string = 'Hovig'

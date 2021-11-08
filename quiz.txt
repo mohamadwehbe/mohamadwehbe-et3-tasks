@@ -19,3 +19,51 @@ I. Array :
     }, 0);
 
 II. Promises :
+1.  Synchronous code is executed in sequence – each statement waits for the previous statement to finish before executing.
+    Asynchronous code doesn't have to wait – your program can continue to run.
+    You do this to keep your site or app responsive, reducing waiting time for the user.
+
+2.  A promise is an object that may produce a single value some time in the future :
+    either a resolved value, or a reason that it's not resolved (e.g., a network error occurred).
+    A promise may be in one of 3 possible states: fulfilled, rejected, or pending.
+
+3. Promise.resolve('Success').then(function(value) {
+   console.log(value); // "Success"
+   }, function(value) {
+   // not called
+   });
+
+4. function resolved(result) {
+    console.log('Resolved');
+   }
+   function rejected(result) {
+    console.error(result);
+   }
+   Promise.reject(new Error('fail')).then(resolved, rejected);
+   // expected output: Error: fail
+
+5. In my view, unless a library or legacy codebase forces you to use then/catch,
+   the better choice for readability and maintainability is async/await.
+
+6. The Promise.all() method takes an iterable of promises as an input,
+   and returns a single Promise that resolves to an array of the results of the input promises.
+   This returned promise will resolve when all of the input's promises have resolved,
+   or if the input iterable contains no promises.
+   It rejects immediately upon any of the input promises rejecting or non-promises throwing an error,
+   and will reject with this first rejection message / error.
+
+7. The Promise.race() method returns a promise that fulfills or rejects as soon as one of the promises
+   in an iterable fulfills or rejects, with the value or reason from that promise.
+
+8. Promice.all() accepts an array of promises, and will attempt to fulfill all of them. Exits early if just 1 promise gets rejected.
+   Promise.race() also accepts an array of promises, but returns the first promise that is settled.
+   So it depends of what we need from those options.
+
+9. setTimeout is asynchronous
+
+10. How callback function works: We will pass a function into a timeout as an argument,
+    and our function will be executed after the timeout is executed.
+    A callback is a function passed into another function as an argument to be executed later.
+
+III. Lodash :
+1.

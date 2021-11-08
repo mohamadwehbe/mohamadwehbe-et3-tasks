@@ -19,5 +19,5 @@ for(i =0 ; i<a.length;i++) {
     }
     cost = large*1.80+medium*1.00+small*0.60+(a[i])*5.50;
     if(cost > 280)
-        console.log(cost);
+        console.log({cost});
 }

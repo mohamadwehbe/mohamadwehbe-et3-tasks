@@ -6,3 +6,4 @@ Answer of third part is sort.js
 Answer of fourth part is above280.js
 Answer of fifth part is discount.js
 Answer of the last part is options.js
+The fullTask.js file has the full answers for the javascript task.

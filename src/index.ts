@@ -1,7 +1,7 @@
 import * as prompt from 'prompt-sync';
 import * as _ from 'lodash';
 
-let use = prompt({sigint: true});
+const usePrompt = prompt({sigint: true});
 
 let guess = false;
 let guessOption = false;
@@ -74,7 +74,7 @@ function cost (bags) {
 }
 
 while(!guess) {
-    let question = use('choose a question: ');
+    let question = usePrompt('choose a question: ');
     if (question === "1" ) {
         console.log('\nDisplay the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
         display(a);
@@ -123,7 +123,7 @@ while(!guess) {
         console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\n');
         let orders = [];
         while (!guessOption) {
-            let option = use('choose an option: ');
+            let option = usePrompt('choose an option: ');
           //Exit
             if (option === "q" || option === "Q" ) {
               console.log('exit program!');
@@ -131,14 +131,14 @@ while(!guess) {
             }
           //Add order
             else if( option === "a" || option === "A" ) {
-              let order = use('Add an order: ');
+              let order = usePrompt('Add an order: ');
                 orders.push(order);
                 console.log({orders});
                 console.log('-----------------');
             }
           //Delete order
             else if( option === "b" || option === "B" ) {
-              let order = use('Delete an order: ');
+              let order = usePrompt('Delete an order: ');
               let b = orders.filter(e => e === order);
               b.forEach(f => orders.splice(orders.findIndex(e => e === f),1));
               console.log({orders});
@@ -146,7 +146,7 @@ while(!guess) {
             }
           //Find order
             else if( option === "c" || option === "C" ) {
-            let find = use('Find an order: ');
+            let find = usePrompt('Find an order: ');
             let bool = _.some(orders, order=>order === find);
             if (bool) {
               let order = _.filter(orders, order=>order === find);

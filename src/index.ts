@@ -10,7 +10,7 @@ console.log("\n From 1-4 the input is an array of the numbers : 52, 208, 31, 66,
 
 let a = [52,208,31,66,110,5,88,300];
 
-function display (array) {
+function display (array:number[]) {
     array.map(bags=>{
         console.log({bags});
         let large = 0;
@@ -46,7 +46,7 @@ function display (array) {
     })
 }
 
-function cost (bags) {
+function cost (bags:number) {
     let large = 0;
     let medium = 0;
     let small = 0;
@@ -120,7 +120,7 @@ while(!guess) {
         })
     }
     else if (question == "5") {
-        console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\n');
+        console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\nA for Add  , B for Delete , C for Find , D for Checkout, Q for Exit.\n');
         let orders = [];
         while (!guessOption) {
             let option = usePrompt('choose an option: ');

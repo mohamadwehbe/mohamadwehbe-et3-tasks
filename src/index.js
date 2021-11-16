@@ -116,7 +116,7 @@ var _loop_1 = function () {
         });
     }
     else if (question == "5") {
-        console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\n');
+        console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\nA for Add  , B for Delete , C for Find , D for Checkout, Q for Exit.\n');
         var orders_1 = [];
         var _loop_2 = function () {
             var option = usePrompt('choose an option: ');

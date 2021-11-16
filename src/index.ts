@@ -3,20 +3,17 @@ import * as _ from 'lodash';
 
 const usePrompt = prompt({sigint: true});
 
-let guess = false;
-let guessOption = false;
+let guess:boolean = false;
+let guessOption:boolean = false;
 
 console.log("\n From 1-4 the input is an array of the numbers : 52, 208, 31, 66, 110, 5, 88, 300. \n\n 1- Displaying the total number of bags ordered, total price of coffee,\n    number of boxes used from each size and their respective prices, and the total order price(bags + coffee). \n\n 2- Print the costs from the lowest to highest \n\n 3- Print only the cost above 280$. \n\n 4- For every cost above 400$ make a discount of 15%. \n\n 5- Display the list of options (Add order, delete order, find order, checkout). \n    Please make sure the options you choosing is available\n");
 
-let a = [52,208,31,66,110,5,88,300];
+let a:number[] = [52,208,31,66,110,5,88,300];
 
-function display (array:number[]) {
+function display (array:number[]) : void {
     array.map(bags=>{
         console.log({bags});
-        let large = 0;
-        let medium = 0;
-        let small = 0;
-        let contains =0;
+        let large = 0, medium = 0, small = 0, contains =0;
         let tempBags = bags;
         if(tempBags >= 20) {
             large = (tempBags - tempBags % 20)/20;
@@ -46,11 +43,8 @@ function display (array:number[]) {
     })
 }
 
-function cost (bags:number) {
-    let large = 0;
-    let medium = 0;
-    let small = 0;
-    let contains =0;
+function cost (bags:number) : number{
+    let large = 0, medium = 0, small = 0, contains =0;
     let tempBags = bags;
     if(tempBags >= 20) {
         large = (tempBags - tempBags % 20)/20;
@@ -81,8 +75,9 @@ while(!guess) {
     }
     else if (question == "2") {
         console.log('\nCosts from lowest to highest of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        a.sort(function(a, b){return a - b});
-        a.map(bags=>{
+        let b:number[] = a;
+        b.sort((a1, a2)=>{return a1 - a2});
+        b.map(bags=>{
             console.log({bags});
             let total = cost(bags);
             console.log({total});
@@ -90,7 +85,7 @@ while(!guess) {
         })
     }
     else if (question == "3") {
-        console.log('\ncosts above 280$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+        console.log('\nCosts above 280$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
         a.map(bags=>{
             if(cost(bags)>280){
                 console.log({bags});
@@ -101,7 +96,7 @@ while(!guess) {
         })
     }
     else if (question == "4") {
-        console.log('\nDiscont 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+        console.log('\nDiscount 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
         a.sort((a, b)=>{return a - b});
         a.map(bags=>{
             console.log({bags});

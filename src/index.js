@@ -10,10 +10,7 @@ var a = [52, 208, 31, 66, 110, 5, 88, 300];
 function display(array) {
     array.map(function (bags) {
         console.log({ bags: bags });
-        var large = 0;
-        var medium = 0;
-        var small = 0;
-        var contains = 0;
+        var large = 0, medium = 0, small = 0, contains = 0;
         var tempBags = bags;
         if (tempBags >= 20) {
             large = (tempBags - tempBags % 20) / 20;
@@ -44,10 +41,7 @@ function display(array) {
     });
 }
 function cost(bags) {
-    var large = 0;
-    var medium = 0;
-    var small = 0;
-    var contains = 0;
+    var large = 0, medium = 0, small = 0, contains = 0;
     var tempBags = bags;
     if (tempBags >= 20) {
         large = (tempBags - tempBags % 20) / 20;
@@ -77,8 +71,9 @@ var _loop_1 = function () {
     }
     else if (question == "2") {
         console.log('\nCosts from lowest to highest of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        a.sort(function (a, b) { return a - b; });
-        a.map(function (bags) {
+        var b = a;
+        b.sort(function (a1, a2) { return a1 - a2; });
+        b.map(function (bags) {
             console.log({ bags: bags });
             var total = cost(bags);
             console.log({ total: total });
@@ -86,7 +81,7 @@ var _loop_1 = function () {
         });
     }
     else if (question == "3") {
-        console.log('\ncosts above 280$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+        console.log('\nCosts above 280$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
         a.map(function (bags) {
             if (cost(bags) > 280) {
                 console.log({ bags: bags });
@@ -97,7 +92,7 @@ var _loop_1 = function () {
         });
     }
     else if (question == "4") {
-        console.log('\nDiscont 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+        console.log('\nDiscount 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
         a.sort(function (a, b) { return a - b; });
         a.map(function (bags) {
             console.log({ bags: bags });

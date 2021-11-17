@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var prompt = require("prompt-sync");
 var _ = require("lodash");
-var use = prompt({ sigint: true });
+var usePrompt = prompt({ sigint: true });
 var guess = false;
 var guessOption = false;
 console.log("\n From 1-4 the input is an array of the numbers : 52, 208, 31, 66, 110, 5, 88, 300. \n\n 1- Displaying the total number of bags ordered, total price of coffee,\n    number of boxes used from each size and their respective prices, and the total order price(bags + coffee). \n\n 2- Print the costs from the lowest to highest \n\n 3- Print only the cost above 280$. \n\n 4- For every cost above 400$ make a discount of 15%. \n\n 5- Display the list of options (Add order, delete order, find order, checkout). \n    Please make sure the options you choosing is available\n");
@@ -10,10 +10,7 @@ var a = [52, 208, 31, 66, 110, 5, 88, 300];
 function display(array) {
     array.map(function (bags) {
         console.log({ bags: bags });
-        var large = 0;
-        var medium = 0;
-        var small = 0;
-        var contains = 0;
+        var large = 0, medium = 0, small = 0, contains = 0;
         var tempBags = bags;
         if (tempBags >= 20) {
             large = (tempBags - tempBags % 20) / 20;
@@ -44,10 +41,7 @@ function display(array) {
     });
 }
 function cost(bags) {
-    var large = 0;
-    var medium = 0;
-    var small = 0;
-    var contains = 0;
+    var large = 0, medium = 0, small = 0, contains = 0;
     var tempBags = bags;
     if (tempBags >= 20) {
         large = (tempBags - tempBags % 20) / 20;
@@ -70,15 +64,16 @@ function cost(bags) {
     return totalCost;
 }
 var _loop_1 = function () {
-    var question = use('choose a question: ');
+    var question = usePrompt('choose a question: ');
     if (question === "1") {
         console.log('\nDisplay the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
         display(a);
     }
     else if (question == "2") {
         console.log('\nCosts from lowest to highest of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        a.sort(function (a, b) { return a - b; });
-        a.map(function (bags) {
+        var b = a;
+        b.sort(function (a1, a2) { return a1 - a2; });
+        b.map(function (bags) {
             console.log({ bags: bags });
             var total = cost(bags);
             console.log({ total: total });
@@ -86,7 +81,7 @@ var _loop_1 = function () {
         });
     }
     else if (question == "3") {
-        console.log('\ncosts above 280$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+        console.log('\nCosts above 280$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
         a.map(function (bags) {
             if (cost(bags) > 280) {
                 console.log({ bags: bags });
@@ -97,7 +92,7 @@ var _loop_1 = function () {
         });
     }
     else if (question == "4") {
-        console.log('\nDiscont 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+        console.log('\nDiscount 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
         a.sort(function (a, b) { return a - b; });
         a.map(function (bags) {
             console.log({ bags: bags });
@@ -116,10 +111,10 @@ var _loop_1 = function () {
         });
     }
     else if (question == "5") {
-        console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\n');
+        console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\nA for Add  , B for Delete , C for Find , D for Checkout, Q for Exit.\n');
         var orders_1 = [];
         var _loop_2 = function () {
-            var option = use('choose an option: ');
+            var option = usePrompt('choose an option: ');
             //Exit
             if (option === "q" || option === "Q") {
                 console.log('exit program!');
@@ -127,14 +122,14 @@ var _loop_1 = function () {
             }
             //Add order
             else if (option === "a" || option === "A") {
-                var order = use('Add an order: ');
+                var order = usePrompt('Add an order: ');
                 orders_1.push(order);
                 console.log({ orders: orders_1 });
                 console.log('-----------------');
             }
             //Delete order
             else if (option === "b" || option === "B") {
-                var order_1 = use('Delete an order: ');
+                var order_1 = usePrompt('Delete an order: ');
                 var b = orders_1.filter(function (e) { return e === order_1; });
                 b.forEach(function (f) { return orders_1.splice(orders_1.findIndex(function (e) { return e === f; }), 1); });
                 console.log({ orders: orders_1 });
@@ -142,7 +137,7 @@ var _loop_1 = function () {
             }
             //Find order
             else if (option === "c" || option === "C") {
-                var find_1 = use('Find an order: ');
+                var find_1 = usePrompt('Find an order: ');
                 var bool = _.some(orders_1, function (order) { return order === find_1; });
                 if (bool) {
                     var order = _.filter(orders_1, function (order) { return order === find_1; });

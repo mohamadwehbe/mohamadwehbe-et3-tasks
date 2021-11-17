@@ -8,9 +8,9 @@ let guessOption:boolean = false;
 
 console.log("\n From 1-4 the input is an array of the numbers : 52, 208, 31, 66, 110, 5, 88, 300. \n\n 1- Displaying the total number of bags ordered, total price of coffee,\n    number of boxes used from each size and their respective prices, and the total order price(bags + coffee). \n\n 2- Print the costs from the lowest to highest \n\n 3- Print only the cost above 280$. \n\n 4- For every cost above 400$ make a discount of 15%. \n\n 5- Display the list of options (Add order, delete order, find order, checkout). \n    Please make sure the options you choosing is available\n");
 
-let a:number[] = [52,208,31,66,110,5,88,300];
+let a:Array<number> = [52,208,31,66,110,5,88,300];
 
-function display (array:number[]) : void {
+function display (array:Array<number>) : void {
     array.map(bags=>{
         console.log({bags});
         let large = 0, medium = 0, small = 0, contains =0;
@@ -75,12 +75,12 @@ while(!guess) {
     }
     else if (question == "2") {
         console.log('\nCosts from lowest to highest of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        let b:number[] = a;
+        let b:Array<number> = a;
         b.sort((a1, a2)=>{return a1 - a2});
         b.map(bags=>{
             console.log({bags});
-            let total = cost(bags);
-            console.log({total});
+            let totalCost = cost(bags);
+            console.log({totalCost});
             console.log('##########');
         })
     }
@@ -89,15 +89,14 @@ while(!guess) {
         a.map(bags=>{
             if(cost(bags)>280){
                 console.log({bags});
-                let total = cost(bags);
-                console.log({total});
+                let totalCost = cost(bags);
+                console.log({totalCost});
                 console.log('##########');
             }
         })
     }
     else if (question == "4") {
         console.log('\nDiscount 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        a.sort((a, b)=>{return a - b});
         a.map(bags=>{
             console.log({bags});
             let totalCost = cost(bags);

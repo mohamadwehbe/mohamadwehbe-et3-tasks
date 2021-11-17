@@ -75,8 +75,8 @@ var _loop_1 = function () {
         b.sort(function (a1, a2) { return a1 - a2; });
         b.map(function (bags) {
             console.log({ bags: bags });
-            var total = cost(bags);
-            console.log({ total: total });
+            var totalCost = cost(bags);
+            console.log({ totalCost: totalCost });
             console.log('##########');
         });
     }
@@ -85,15 +85,14 @@ var _loop_1 = function () {
         a.map(function (bags) {
             if (cost(bags) > 280) {
                 console.log({ bags: bags });
-                var total = cost(bags);
-                console.log({ total: total });
+                var totalCost = cost(bags);
+                console.log({ totalCost: totalCost });
                 console.log('##########');
             }
         });
     }
     else if (question == "4") {
         console.log('\nDiscount 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        a.sort(function (a, b) { return a - b; });
         a.map(function (bags) {
             console.log({ bags: bags });
             var totalCost = cost(bags);

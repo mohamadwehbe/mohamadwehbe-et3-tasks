@@ -15,21 +15,20 @@ function display (array:Array<number>) : void {
         console.log({bags});
         let large = 0, medium = 0, small = 0, contains =0;
         let tempBags = bags;
-        if(tempBags >= 20) {
-            large = (tempBags - tempBags % 20)/20;
-            tempBags = tempBags%20;
-        }
-        if(tempBags >= 10) {
-            medium = (tempBags - tempBags % 10)/10;
-            tempBags = tempBags%10;
-        }
-        if(tempBags >= 5) {
-            small = (tempBags - tempBags % 5)/5;
-            tempBags = tempBags%5;
+        switch(true) {
+            case (tempBags>=20):
+                large = (tempBags - tempBags % 20)/20;
+                tempBags = tempBags%20;
+            case (tempBags >= 10):
+                medium = (tempBags - tempBags % 10)/10;
+                tempBags = tempBags%10;
+            case (tempBags >= 5):
+                small = (tempBags - tempBags % 5)/5;
+                tempBags = tempBags%5;
         }
         if(tempBags > 0) {
-            small ++;
-            contains = tempBags ;
+            small++ ;
+            contains = 0;
         }
         let priceOfCoffee = bags*5.50 ;
         let totalCost = large*1.80+medium*1.00+small*0.60+priceOfCoffee ;
@@ -46,21 +45,20 @@ function display (array:Array<number>) : void {
 function cost (bags:number) : number{
     let large = 0, medium = 0, small = 0, contains =0;
     let tempBags = bags;
-    if(tempBags >= 20) {
-        large = (tempBags - tempBags % 20)/20;
-        tempBags = tempBags%20;
-    }
-    if(tempBags >= 10) {
-        medium = (tempBags - tempBags % 10)/10;
-        tempBags = tempBags%10;
-    }
-    if(tempBags >= 5) {
-        small = (tempBags - tempBags % 5)/5;
-        tempBags = tempBags%5;
+    switch(true) {
+        case (tempBags>=20):
+            large = (tempBags - tempBags % 20)/20;
+            tempBags = tempBags%20;
+        case (tempBags >= 10):
+            medium = (tempBags - tempBags % 10)/10;
+            tempBags = tempBags%10;
+        case (tempBags >= 5):
+            small = (tempBags - tempBags % 5)/5;
+            tempBags = tempBags%5;
     }
     if(tempBags > 0) {
-        small ++;
-        contains = tempBags ;
+        small++ ;
+        contains = 0;
     }
     let priceOfCoffee = bags*5.50 ;
     let totalCost = large*1.80+medium*1.00+small*0.60+priceOfCoffee ;
@@ -69,97 +67,100 @@ function cost (bags:number) : number{
 
 while(!guess) {
     let question = usePrompt('choose a question: ');
-    if (question === "1" ) {
-        console.log('\nDisplay the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        display(a);
-    }
-    else if (question == "2") {
-        console.log('\nCosts from lowest to highest of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        let b:Array<number> = a;
-        b.sort((a1, a2)=>{return a1 - a2});
-        b.map(bags=>{
-            console.log({bags});
-            let totalCost = cost(bags);
-            console.log({totalCost});
-            console.log('##########');
-        })
-    }
-    else if (question == "3") {
-        console.log('\nCosts above 280$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        a.map(bags=>{
-            if(cost(bags)>280){
+    switch(question){
+        case "1":
+            console.log('\nDisplay the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+            display(a);
+            break;
+        case "2":
+            console.log('\nCosts from lowest to highest of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+            let b:Array<number> = a;
+            b.sort((a1, a2)=>{return a1 - a2});
+            b.map(bags=>{
                 console.log({bags});
                 let totalCost = cost(bags);
                 console.log({totalCost});
                 console.log('##########');
-            }
-        })
-    }
-    else if (question == "4") {
-        console.log('\nDiscount 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-        a.map(bags=>{
-            console.log({bags});
-            let totalCost = cost(bags);
-            if(totalCost > 400) {
-                let discount = totalCost*(15/100);
-                let afterDiscount = totalCost - discount;
-                let originalCost = totalCost;
-                console.log({originalCost});
-                console.log({afterDiscount});
-                console.log('-----------------');
-            }
-            else
-                console.log({totalCost});
-            console.log('##########');
-        })
-    }
-    else if (question == "5") {
-        console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\nA for Add  , B for Delete , C for Find , D for Checkout, Q for Exit.\n');
+            })
+            break;
+        case "3":
+            console.log('\nCosts above 280$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+            a.map(bags=>{
+                if(cost(bags)>280){
+                    console.log({bags});
+                    let totalCost = cost(bags);
+                    console.log({totalCost});
+                    console.log('##########');
+                }
+            })
+            break;
+        case "4":
+            console.log('\nDiscount 15% on costs above 400$ of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
+            a.map(bags=>{
+                console.log({bags});
+                let totalCost = cost(bags);
+                if(totalCost > 400) {
+                    let discount = totalCost*(15/100);
+                    let afterDiscount = totalCost - discount;
+                    let originalCost = totalCost;
+                    console.log({originalCost});
+                    console.log({afterDiscount});
+                    console.log('-----------------');
+                }
+                else
+                    console.log({totalCost});
+                console.log('##########');
+            })
+            break;
+        case "5":
+            console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\nA for Add  , B for Delete , C for Find , D for Checkout, Q for Exit.\n');
         let orders = [];
         while (!guessOption) {
             let option = usePrompt('choose an option: ');
-          //Exit
-            if (option === "q" || option === "Q" ) {
-              console.log('exit program!');
-              guessOption = true;
+            //Exit
+            switch(option.toUpperCase()) {
+                case "Q":
+                    console.log('exit program!');
+                    guessOption = true;
+                    break;
+                case "A":
+                    let orderA = usePrompt('Add an order: ');
+                    orders.push(orderA);
+                    console.log({orders});
+                    console.log('-----------------');
+                    break;
+                case "B":
+                    let orderB = usePrompt('Delete an order: ');
+                    let b = orders.filter(e => e === orderB);
+                    b.forEach(f => orders.splice(orders.findIndex(e => e === f),1));
+                    console.log({orders});
+                    console.log('-----------------');
+                    break;
+                case "C":
+                    let find = usePrompt('Find an order: ');
+                    let bool = _.some(orders, order=>order === find);
+                    if (bool) {
+                    let order = _.filter(orders, order=>order === find);
+                    console.log({order});
+                    break;
+                    }
+                    else console.log(' Not Found! ');
+                    console.log('-----------------');
+                    break;
+                case "D":
+                    console.log(` Checkout: `);
+                    display(orders);
+                    break;
+                default:
+                    console.log(` ${option} is not an option, choose again! `);
+                    console.log(' The options are : A for Add  , B for Delete , C for Find , D for Checkout and Q for Exit! ');
+                    console.log('--------------------------------------------------------------------------------------');
+                    break;
             }
-          //Add order
-            else if( option === "a" || option === "A" ) {
-              let order = usePrompt('Add an order: ');
-                orders.push(order);
-                console.log({orders});
-                console.log('-----------------');
-            }
-          //Delete order
-            else if( option === "b" || option === "B" ) {
-              let order = usePrompt('Delete an order: ');
-              let b = orders.filter(e => e === order);
-              b.forEach(f => orders.splice(orders.findIndex(e => e === f),1));
-              console.log({orders});
-              console.log('-----------------');
-            }
-          //Find order
-            else if( option === "c" || option === "C" ) {
-            let find = usePrompt('Find an order: ');
-            let bool = _.some(orders, order=>order === find);
-            if (bool) {
-              let order = _.filter(orders, order=>order === find);
-              console.log({order});
-            }
-            else console.log(' Not Found! ');
-            console.log('-----------------');
-            }
-          //Checkout(calculate and print all orders)
-            else if( option === "d" || option === "D" ) {
-              console.log(` Checkout: `);
-              display(orders);
-            }
-            else {
-              console.log(` ${option} is not an option, choose again! `);
-              console.log(' The options are : A for Add  , B for Delete , C for Find , D for Checkout and Q for Exit! ');
-              console.log('--------------------------------------------------------------------------------------');
-            }
-          }
+        }
+        break;
+        default:
+            guess = true;
+            break;
     }
-    else guess=true;
 }

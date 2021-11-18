@@ -2,7 +2,7 @@ type union = number | string ;
 type descriptor = 'as-number' | 'as-string' ;
 
 function combine(in1:union, in2:union, resultConversion: descriptor) {
-    let result;
+    let result:union;
     if (typeof in1 === 'number' && typeof in2 === 'number' || resultConversion === 'as-number') {
         result = +in1 + +in2 ;
     }

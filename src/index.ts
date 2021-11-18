@@ -3,39 +3,46 @@ import * as _ from 'lodash';
 
 const usePrompt = prompt({sigint: true});
 
+type arrayOfNumber = Array<number>;
+let Box = {
+    large:0,
+    medium:0,
+    small:0
+}
+
 let guess:boolean = false, guessOption:boolean = false;
 
 console.log("\n From 1-4 the input is an array of the numbers : 52, 208, 31, 66, 110, 5, 88, 300. \n\n 1- Displaying the total number of bags ordered, total price of coffee,\n    number of boxes used from each size and their respective prices, and the total order price(bags + coffee). \n\n 2- Print the costs from the lowest to highest \n\n 3- Print only the cost above 280$. \n\n 4- For every cost above 400$ make a discount of 15%. \n\n 5- Display the list of options (Add order, delete order, find order, checkout). \n    Please make sure the options you choosing is available\n");
 
-let a:Array<number> = [52,208,31,66,110,5,88,300];
+let a:arrayOfNumber = [52,208,31,66,110,5,88,300];
 let display:Function, cost:Function;
 
-display = (array:Array<number>) : void =>{
+display = (array:arrayOfNumber) : void =>{
     array.map(bags=>{
         console.log({bags});
-        let large = 0, medium = 0, small = 0, contains =0;
+        let contains =0;
         let tempBags = bags;
         switch(true) {
             case (tempBags>=20):
-                large = (tempBags - tempBags % 20)/20;
+                Box.large = (tempBags - tempBags % 20)/20;
                 tempBags = tempBags%20;
             case (tempBags >= 10):
-                medium = (tempBags - tempBags % 10)/10;
+                Box.medium = (tempBags - tempBags % 10)/10;
                 tempBags = tempBags%10;
             case (tempBags >= 5):
-                small = (tempBags - tempBags % 5)/5;
+                Box.small = (tempBags - tempBags % 5)/5;
                 tempBags = tempBags%5;
         }
         if(tempBags > 0) {
-            small++ ;
+            Box.small++ ;
             contains = 0;
         }
         let priceOfCoffee = bags*5.50 ;
-        let totalCost = large*1.80+medium*1.00+small*0.60+priceOfCoffee ;
+        let totalCost = Box.large*1.80+Box.medium*1.00+Box.small*0.60+priceOfCoffee ;
         console.log({priceOfCoffee});
-        console.log(`{ Number of Large Boxes : ${large} , Price of large boxes used : ${large*1.80} }`);
-        console.log(`{ Number of Medium Boxes : ${medium} , Price of medium boxes used : ${medium*1.00} }`);
-        console.log(`{ Number of Small Boxes : ${small} , Price of small boxes used : ${small*0.60} }`);
+        console.log(`{ Number of Large Boxes : ${Box.large} , Price of large boxes used : ${Box.large*1.80} }`);
+        console.log(`{ Number of Medium Boxes : ${Box.medium} , Price of medium boxes used : ${Box.medium*1.00} }`);
+        console.log(`{ Number of Small Boxes : ${Box.small} , Price of small boxes used : ${Box.small*0.60} }`);
         if(contains > 0) console.log(`{ The last small box has ${contains} bags of coffee }`);
         console.log({totalCost});
         console.log('--------------------------------------------------------------------------------------');
@@ -43,25 +50,25 @@ display = (array:Array<number>) : void =>{
 }
 
 cost = (bags:number) : number =>{
-    let large = 0, medium = 0, small = 0, contains =0;
+    let contains =0;
     let tempBags = bags;
     switch(true) {
         case (tempBags>=20):
-            large = (tempBags - tempBags % 20)/20;
+            Box.large = (tempBags - tempBags % 20)/20;
             tempBags = tempBags%20;
         case (tempBags >= 10):
-            medium = (tempBags - tempBags % 10)/10;
+            Box.medium = (tempBags - tempBags % 10)/10;
             tempBags = tempBags%10;
         case (tempBags >= 5):
-            small = (tempBags - tempBags % 5)/5;
+            Box.small = (tempBags - tempBags % 5)/5;
             tempBags = tempBags%5;
     }
     if(tempBags > 0) {
-        small++ ;
+        Box.small++ ;
         contains = 0;
     }
     let priceOfCoffee = bags*5.50 ;
-    let totalCost = large*1.80+medium*1.00+small*0.60+priceOfCoffee ;
+    let totalCost = Box.large*1.80+Box.medium*1.00+Box.small*0.60+priceOfCoffee ;
     return totalCost;
 }
 
@@ -74,7 +81,7 @@ while(!guess) {
             break;
         case "2":
             console.log('\nCosts from lowest to highest of the array of bags [52, 208, 31, 66, 110, 5, 88, 300]\n');
-            let b:Array<number> = a;
+            let b:arrayOfNumber = a;
             b.sort((a1, a2)=>{return a1 - a2});
             b.map(bags=>{
                 console.log({bags});
@@ -114,51 +121,51 @@ while(!guess) {
             break;
         case "5":
             console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\nA for Add  , B for Delete , C for Find , D for Checkout, Q for Exit.\n');
-        let orders = [];
-        while (!guessOption) {
-            let option = usePrompt('choose an option: ');
-            //Exit
-            switch(option.toUpperCase()) {
-                case "Q":
-                    console.log('exit program!');
-                    guessOption = true;
-                    break;
-                case "A":
-                    let orderA = usePrompt('Add an order: ');
-                    orders.push(orderA);
-                    console.log({orders});
-                    console.log('-----------------');
-                    break;
-                case "B":
-                    let orderB = usePrompt('Delete an order: ');
-                    let b = orders.filter(e => e === orderB);
-                    b.forEach(f => orders.splice(orders.findIndex(e => e === f),1));
-                    console.log({orders});
-                    console.log('-----------------');
-                    break;
-                case "C":
-                    let find = usePrompt('Find an order: ');
-                    let bool = _.some(orders, order=>order === find);
-                    if (bool) {
-                    let order = _.filter(orders, order=>order === find);
-                    console.log({order});
-                    break;
-                    }
-                    else console.log(' Not Found! ');
-                    console.log('-----------------');
-                    break;
-                case "D":
-                    console.log(` Checkout: `);
-                    display(orders);
-                    break;
-                default:
-                    console.log(` ${option} is not an option, choose again! `);
-                    console.log(' The options are : A for Add  , B for Delete , C for Find , D for Checkout and Q for Exit! ');
-                    console.log('--------------------------------------------------------------------------------------');
-                    break;
+            let orders:number[] = [];
+            while (!guessOption) {
+                let option = usePrompt('choose an option: ');
+                //Exit
+                switch(option.toUpperCase()) {
+                    case "Q":
+                        console.log('exit program!');
+                        guessOption = true;
+                        break;
+                    case "A":
+                        let orderA = usePrompt('Add an order: ');
+                        orders.push(+orderA);
+                        console.log({orders});
+                        console.log('-----------------');
+                        break;
+                    case "B":
+                        let orderB = usePrompt('Delete an order: ');
+                        let b = orders.filter(e => e === +orderB);
+                        b.forEach(f => orders.splice(orders.findIndex(e => e === f),1));
+                        console.log({orders});
+                        console.log('-----------------');
+                        break;
+                    case "C":
+                        let find = usePrompt('Find an order: ');
+                        let bool = _.some(orders, order=>order === +find);
+                        if (bool) {
+                        let order = _.filter(orders, order=>order === +find);
+                        console.log({order});
+                        break;
+                        }
+                        else console.log(' Not Found! ');
+                        console.log('-----------------');
+                        break;
+                    case "D":
+                        console.log(` Checkout: `);
+                        display(orders);
+                        break;
+                    default:
+                        console.log(` ${option} is not an option, choose again! `);
+                        console.log(' The options are : A for Add  , B for Delete , C for Find , D for Checkout and Q for Exit! ');
+                        console.log('--------------------------------------------------------------------------------------');
+                        break;
+                }
             }
-        }
-        break;
+            break;
         default:
             guess = true;
             break;

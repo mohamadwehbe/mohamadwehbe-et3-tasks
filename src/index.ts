@@ -3,14 +3,14 @@ import * as _ from 'lodash';
 
 const usePrompt = prompt({sigint: true});
 
-let guess:boolean = false;
-let guessOption:boolean = false;
+let guess:boolean = false, guessOption:boolean = false;
 
 console.log("\n From 1-4 the input is an array of the numbers : 52, 208, 31, 66, 110, 5, 88, 300. \n\n 1- Displaying the total number of bags ordered, total price of coffee,\n    number of boxes used from each size and their respective prices, and the total order price(bags + coffee). \n\n 2- Print the costs from the lowest to highest \n\n 3- Print only the cost above 280$. \n\n 4- For every cost above 400$ make a discount of 15%. \n\n 5- Display the list of options (Add order, delete order, find order, checkout). \n    Please make sure the options you choosing is available\n");
 
 let a:Array<number> = [52,208,31,66,110,5,88,300];
+let display:Function, cost:Function;
 
-function display (array:Array<number>) : void {
+display = (array:Array<number>) : void =>{
     array.map(bags=>{
         console.log({bags});
         let large = 0, medium = 0, small = 0, contains =0;
@@ -42,7 +42,7 @@ function display (array:Array<number>) : void {
     })
 }
 
-function cost (bags:number) : number{
+cost = (bags:number) : number =>{
     let large = 0, medium = 0, small = 0, contains =0;
     let tempBags = bags;
     switch(true) {

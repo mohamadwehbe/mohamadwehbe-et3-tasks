@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
 import Search from './Search';
@@ -199,14 +199,14 @@ export default function FullFeaturedCrudGrid() {
 
         return [
           <GridActionsCellItem
-            icon={<EditIcon />}
+            icon={<EditIcon style={{color:'white'}}/>}
             label="Edit"
             className={classes.textPrimary}
             onClick={handleEditClick(id)}
             color="inherit"
           />,
           <GridActionsCellItem
-            icon={<DeleteIcon />}
+            icon={<HighlightOffIcon style={{color:'white'}}/>}
             label="Delete"
             onClick={handleDeleteClick(id)}
             color="inherit"
@@ -236,7 +236,7 @@ export default function FullFeaturedCrudGrid() {
         componentsProps={{
           toolbar: { apiRef },
         }}
-        style = {{backgroundColor: 'rgba(130, 130, 130, 1)',color:'white'}}
+        style = {{backgroundColor: 'rgba(130, 130, 130, 1)',color:'white',fontSize:20,padding:20}}
       />
     </div>
   );

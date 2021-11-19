@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
+import Search from './Search';
 import et3img from '../et3img.jpg';
 import {
   useGridApiRef,
@@ -96,6 +97,7 @@ function EditToolbar(props) {
       <Button startIcon={<AddIcon />} onClick={handleClick} style = {{color:'white'}} >
         Add record
       </Button>
+      <Search/>
     </GridToolbarContainer>
   );
 }

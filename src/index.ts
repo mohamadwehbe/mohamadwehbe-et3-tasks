@@ -1,5 +1,5 @@
 import * as prompt from 'prompt-sync';
-import * as _ from 'lodash';
+import * as _ from 'lodash/index';
 
 const usePrompt = prompt({sigint: true});
 

@@ -15,10 +15,7 @@ import {
   GridActionsCellItem,
 } from '@mui/x-data-grid-pro';
 import {
-  randomCreatedDate,
-  randomTraderName,
-  randomUpdatedDate,
-  randomId,
+  randomId
 } from '@mui/x-data-grid-generator';
 import { createTheme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
@@ -37,43 +34,7 @@ const useStyles = makeStyles(
   { defaultTheme },
 );
 
-const rows = [
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 25,
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 36,
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 19,
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 28,
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: randomId(),
-    name: randomTraderName(),
-    age: 23,
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-];
+const rows = [];
 
 function EditToolbar(props) {
   const { apiRef } = props;
@@ -88,7 +49,7 @@ function EditToolbar(props) {
         rowIndex: apiRef.current.getRowsCount() - 1,
       });
 
-      apiRef.current.setCellFocus(id, 'name');
+      apiRef.current.setCellFocus(id, 'se');
     });
   };
 
@@ -154,8 +115,6 @@ export default function FullFeaturedCrudGrid() {
   };
 
   const columns = [
-    { field: 'name', headerName: 'Name', width: 180, editable: true },
-    { field: 'age', headerName: 'Age', type: 'number', editable: true },
     {
       field: 'dateCreated',
       headerName: 'Date Created',
@@ -163,13 +122,18 @@ export default function FullFeaturedCrudGrid() {
       width: 180,
       editable: true,
     },
-    {
-      field: 'lastLogin',
-      headerName: 'Last Login',
-      type: 'dateTime',
-      width: 220,
-      editable: true,
-    },
+    { field: 'se', headerName: 'SE', width: 180, editable: true },
+    { field: 'id', headerName: '#', type: 'number', editable: true },
+    { field: 'platform', headerName: 'Platform', width: 180, editable: true },
+    { field: 'release', headerName: 'Release version', width: 180, editable: true },
+    { field: 'comments', headerName: 'Comments', width: 180, editable: true },
+    { field: 'link', headerName: 'PR Link', width: 180, editable: true },
+    { field: 'size', headerName: 'Size', width: 180, editable: true },
+    { field: 'dificulty', headerName: 'Dificulty', width: 180, editable: true },
+    { field: 'status', headerName: 'Status', width: 180, editable: true },
+    { field: 'by', headerName: 'Review By BY', width: 180, editable: true },
+    { field: 'ah', headerName: 'Review By AH', width: 180, editable: true },
+    { field: 'ht', headerName: 'Review By HT', width: 180, editable: true },
     {
       field: 'actions',
       type: 'actions',
@@ -220,7 +184,7 @@ export default function FullFeaturedCrudGrid() {
     <div style={{ height: 500, width: '100%'}}>
       <div style={{display:'flex',flexDirection:'row',alignItems:'center',paddingBlock:20}}>
         <img src={et3img} alt="et3img" style={{width:'5%'}}/>
-        <text style={{fontSize:30,marginLeft:20}} >et3arraf SAL</text>
+        <div style={{fontSize:30,marginLeft:20}} >et3arraf SAL</div>
       </div>
       <DataGridPro
         rows={rows}

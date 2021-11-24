@@ -1,5 +1,6 @@
 import * as prompt from 'prompt-sync';
-import * as _ from 'lodash/index';
+import some from 'lodash/some';
+import filter from 'lodash/filter';
 
 const usePrompt = prompt({sigint: true});
 
@@ -121,7 +122,7 @@ while(!guess) {
             break;
         case "5":
             console.log('\nDisplay the list of options (Add order, delete order, find order, checkout).\nA for Add  , B for Delete , C for Find , D for Checkout, Q for Exit.\n');
-            let orders:number[] = [];
+            let orders:Array<number> = [];
             while (!guessOption) {
                 let option = usePrompt('choose an option: ');
                 //Exit
@@ -145,9 +146,9 @@ while(!guess) {
                         break;
                     case "C":
                         let find = usePrompt('Find an order: ');
-                        let bool = _.some(orders, order=>order === +find);
+                        let bool = some(orders, order=>order === +find);
                         if (bool) {
-                        let order = _.filter(orders, order=>order === +find);
+                        let order = filter(orders, order=>order === +find);
                         console.log({order});
                         break;
                         }

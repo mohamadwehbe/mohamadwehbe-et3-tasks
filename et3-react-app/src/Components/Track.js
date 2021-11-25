@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import AddForm from './AddForm';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,28 +33,29 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(date,se,id,platform,version,comments,prlink,size,dificulty,status,by,ah,ht) {
-  return { date,se,id,platform,version,comments,prlink,size,dificulty,status,by,ah,ht };
-}
-
-const rows = [
-  createData('Friday, September 24, 2021','MW',1,'kh-mobile-client','8.1.0','','https://github.com/et3','SMALL','EASY','Merged','yes/no','yes/no','yes/no'),
-];
-
 export default function CustomizedTables() {
-//   const addRow = ()=>{};
+   const [rows,setRows] = React.useState([]);
+   const [row,setRow] = React.useState({});
+   const [add,setAdd] = React.useState(false);
+   const addRow = ()=>{
+    setAdd(true);
+   };
 //   const edit = ()=>{};
 //   const remove = ()=>{};
   return (
     <div style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
         <Button
             startIcon={<AddIcon style={{fontSize:30}} />}
+            onClick={addRow}
             style = {{
                 color:'black',
                 fontWeight:'bold',
                 fontSize:20}
                 }>
-            Add Row</Button>
+        Add Row</Button>
+        {add? <AddForm rows={rows} setRows={setRows} row={row} setRow={setRow} setAdd={setAdd}/>
+          : <div/>
+        }
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
@@ -89,9 +91,9 @@ export default function CustomizedTables() {
                 <StyledTableCell align="center">{row.size}</StyledTableCell>
                 <StyledTableCell align="center">{row.dificulty}</StyledTableCell>
                 <StyledTableCell align="center">{row.status}</StyledTableCell>
-                <StyledTableCell align="center">{row.by}</StyledTableCell>
-                <StyledTableCell align="center">{row.ah}</StyledTableCell>
-                <StyledTableCell align="center">{row.ht}</StyledTableCell>
+                <StyledTableCell align="center">{row.reviewByBY}</StyledTableCell>
+                <StyledTableCell align="center">{row.reviewByAH}</StyledTableCell>
+                <StyledTableCell align="center">{row.reviewByHT}</StyledTableCell>
                 <StyledTableCell align="center"
                     style={{
                         display:'flex',

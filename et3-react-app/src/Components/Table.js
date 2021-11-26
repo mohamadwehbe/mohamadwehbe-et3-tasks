@@ -122,18 +122,86 @@ export default function FullFeaturedCrudGrid() {
       width: 180,
       editable: true,
     },
-    { field: 'se', headerName: 'SE', width: 180, editable: true },
+    {
+      field: 'se',
+      headerName: 'SE',
+      type: 'singleSelect',
+      valueOptions: ['BY', 'AH','HT','MG','MW','AC','JC'],
+      width: 180,
+      editable: true
+    },
     { field: 'id', headerName: '#', type: 'number', editable: true },
-    { field: 'platform', headerName: 'Platform', width: 180, editable: true },
-    { field: 'release', headerName: 'Release version', width: 180, editable: true },
+    {
+      field: 'platform',
+      headerName: 'Platform',
+      type: 'singleSelect',
+      valueOptions: ['mobile-client', 'kh-server-node',
+                      'kh-sqs-worker', 'kh-server-firebase',
+                      'kh-admin-client', 'kh-admin-server-new',
+                      'kh-admin','fa-mobile-clent','fa-server-firebase',
+                      'kh-website','fa-website'
+                    ],
+      width: 180,
+      editable: true },
+    {
+      field: 'release',
+      headerName: 'Release version',
+      type: 'singleSelect',
+      valueOptions: ['1.8.0'],
+      width: 180,
+      editable: true
+    },
     { field: 'comments', headerName: 'Comments', width: 180, editable: true },
     { field: 'link', headerName: 'PR Link', width: 180, editable: true },
-    { field: 'size', headerName: 'Size', width: 180, editable: true },
-    { field: 'dificulty', headerName: 'Dificulty', width: 180, editable: true },
-    { field: 'status', headerName: 'Status', width: 180, editable: true },
-    { field: 'by', headerName: 'Review By BY', width: 180, editable: true },
-    { field: 'ah', headerName: 'Review By AH', width: 180, editable: true },
-    { field: 'ht', headerName: 'Review By HT', width: 180, editable: true },
+    {
+      field: 'size',
+      headerName: 'Size',
+      type: 'singleSelect',
+      valueOptions: ['SMALL', 'MEDIUM', 'LARGE'],
+      width: 180,
+      editable: true
+    },
+    {
+      field: 'dificulty',
+      headerName: 'Dificulty',
+      type: 'singleSelect',
+      valueOptions: ['EASY', 'MEDIUM', 'HARD'],
+      width: 180,
+      editable: true },
+    {
+      field: 'status',
+      headerName: 'Status',
+      type: 'singleSelect',
+      valueOptions: ['Merged', 'Need Review',
+                     'Closed','Has Comments'
+                    ],
+      width: 180,
+      editable: true
+    },
+    {
+      field: 'by',
+      headerName: 'Review By BY',
+      type: 'singleSelect',
+      valueOptions: ['yes', 'no'],
+      width: 180,
+      editable: true
+    },
+    {
+      field: 'ht',
+      headerName: 'Review By AH',
+      type: 'singleSelect',
+      valueOptions: ['yes', 'no'],
+      width: 180,
+      editable: true
+    },
+    {
+      field: 'ht',
+      headerName: 'Review By HT',
+      type: 'singleSelect',
+      valueOptions: ['yes', 'no'],
+      width: 180,
+      editable: true
+    },
     {
       field: 'actions',
       type: 'actions',

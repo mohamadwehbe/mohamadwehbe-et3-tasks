@@ -1,10 +1,10 @@
 import './App.css';
-import Track from './Components/Track';
+import Table from './Components/Table';
 
 function App() {
   return (
     <div className="App">
-      <Track/>
+      <Table/>
     </div>
   );
 }

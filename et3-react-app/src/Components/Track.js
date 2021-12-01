@@ -53,62 +53,118 @@ export default function CustomizedTables() {
                 fontSize:20}
                 }>
         Add Row</Button>
-        {add? <AddForm rows={rows} setRows={setRows} row={row} setRow={setRow} setAdd={setAdd}/>
-          : <div/>
+        { add ?
+              <div>
+                <AddForm rows={rows} setRows={setRows} row={row} setRow={setRow} setAdd={setAdd}/>
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                      <TableHead>
+                      <TableRow>
+                          <StyledTableCell >Date</StyledTableCell>
+                          <StyledTableCell align="center">SE</StyledTableCell>
+                          <StyledTableCell align="center">#</StyledTableCell>
+                          <StyledTableCell align="center" width='180'>Platform</StyledTableCell>
+                          <StyledTableCell align="center" width='180'>Realease Version</StyledTableCell>
+                          <StyledTableCell align="center">Comments</StyledTableCell>
+                          <StyledTableCell align="center">PR Link</StyledTableCell>
+                          <StyledTableCell align="center">Size</StyledTableCell>
+                          <StyledTableCell align="center">Dificulty</StyledTableCell>
+                          <StyledTableCell align="center">Status</StyledTableCell>
+                          <StyledTableCell align="center">Review by BY</StyledTableCell>
+                          <StyledTableCell align="center">Review by AH</StyledTableCell>
+                          <StyledTableCell align="center">Review by HT</StyledTableCell>
+                          <StyledTableCell align="center">Options</StyledTableCell>
+                      </TableRow>
+                      </TableHead>
+                      <TableBody>
+                      {rows.map((row) => (
+                          <StyledTableRow key={row.se}>
+                          <StyledTableCell component="th" scope="row">
+                              {row.date}
+                          </StyledTableCell>
+                          <StyledTableCell align="center">{row.se}</StyledTableCell>
+                          <StyledTableCell align="center">{row.id}</StyledTableCell>
+                          <StyledTableCell align="center">{row.platform}</StyledTableCell>
+                          <StyledTableCell align="center">{row.version}</StyledTableCell>
+                          <StyledTableCell align="center">{row.comments}</StyledTableCell>
+                          <StyledTableCell align="center">{row.prlink}</StyledTableCell>
+                          <StyledTableCell align="center">{row.size}</StyledTableCell>
+                          <StyledTableCell align="center">{row.dificulty}</StyledTableCell>
+                          <StyledTableCell align="center">{row.status}</StyledTableCell>
+                          <StyledTableCell align="center">{row.reviewByBY}</StyledTableCell>
+                          <StyledTableCell align="center">{row.reviewByAH}</StyledTableCell>
+                          <StyledTableCell align="center">{row.reviewByHT}</StyledTableCell>
+                          <StyledTableCell align="center"
+                              style={{
+                                  display:'flex',
+                                  flexDirection:'row',
+                                  alignItems:'center',
+                                  paddingTop:30
+                              }}>
+                              <Button startIcon={<EditIcon />}/>
+                              <Button startIcon={<HighlightOffIcon />} style={{color:'red'}}/>
+                          </StyledTableCell>
+                          </StyledTableRow>
+                      ))}
+                      </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
+          :
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                  <TableHead>
+                  <TableRow>
+                      <StyledTableCell >Date</StyledTableCell>
+                      <StyledTableCell align="center">SE</StyledTableCell>
+                      <StyledTableCell align="center">#</StyledTableCell>
+                      <StyledTableCell align="center" width='180'>Platform</StyledTableCell>
+                      <StyledTableCell align="center" width='180'>Realease Version</StyledTableCell>
+                      <StyledTableCell align="center">Comments</StyledTableCell>
+                      <StyledTableCell align="center">PR Link</StyledTableCell>
+                      <StyledTableCell align="center">Size</StyledTableCell>
+                      <StyledTableCell align="center">Dificulty</StyledTableCell>
+                      <StyledTableCell align="center">Status</StyledTableCell>
+                      <StyledTableCell align="center">Review by BY</StyledTableCell>
+                      <StyledTableCell align="center">Review by AH</StyledTableCell>
+                      <StyledTableCell align="center">Review by HT</StyledTableCell>
+                      <StyledTableCell align="center">Options</StyledTableCell>
+                  </TableRow>
+                  </TableHead>
+                  <TableBody>
+                  {rows.map((row) => (
+                      <StyledTableRow key={row.se}>
+                      <StyledTableCell component="th" scope="row">
+                          {row.date}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">{row.se}</StyledTableCell>
+                      <StyledTableCell align="center">{row.id}</StyledTableCell>
+                      <StyledTableCell align="center">{row.platform}</StyledTableCell>
+                      <StyledTableCell align="center">{row.version}</StyledTableCell>
+                      <StyledTableCell align="center">{row.comments}</StyledTableCell>
+                      <StyledTableCell align="center">{row.prlink}</StyledTableCell>
+                      <StyledTableCell align="center">{row.size}</StyledTableCell>
+                      <StyledTableCell align="center">{row.dificulty}</StyledTableCell>
+                      <StyledTableCell align="center">{row.status}</StyledTableCell>
+                      <StyledTableCell align="center">{row.reviewByBY}</StyledTableCell>
+                      <StyledTableCell align="center">{row.reviewByAH}</StyledTableCell>
+                      <StyledTableCell align="center">{row.reviewByHT}</StyledTableCell>
+                      <StyledTableCell align="center"
+                          style={{
+                              display:'flex',
+                              flexDirection:'row',
+                              alignItems:'center',
+                              paddingTop:30
+                          }}>
+                          <Button startIcon={<EditIcon />}/>
+                          <Button startIcon={<HighlightOffIcon />} style={{color:'red'}}/>
+                      </StyledTableCell>
+                      </StyledTableRow>
+                  ))}
+                  </TableBody>
+              </Table>
+            </TableContainer>
         }
-        <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-            <TableRow>
-                <StyledTableCell >Date</StyledTableCell>
-                <StyledTableCell align="center">SE</StyledTableCell>
-                <StyledTableCell align="center">#</StyledTableCell>
-                <StyledTableCell align="center" width='180'>Platform</StyledTableCell>
-                <StyledTableCell align="center" width='180'>Realease Version</StyledTableCell>
-                <StyledTableCell align="center">Comments</StyledTableCell>
-                <StyledTableCell align="center">PR Link</StyledTableCell>
-                <StyledTableCell align="center">Size</StyledTableCell>
-                <StyledTableCell align="center">Dificulty</StyledTableCell>
-                <StyledTableCell align="center">Status</StyledTableCell>
-                <StyledTableCell align="center">Review by BY</StyledTableCell>
-                <StyledTableCell align="center">Review by AH</StyledTableCell>
-                <StyledTableCell align="center">Review by HT</StyledTableCell>
-                <StyledTableCell align="center">Options</StyledTableCell>
-            </TableRow>
-            </TableHead>
-            <TableBody>
-            {rows.map((row) => (
-                <StyledTableRow key={row.se}>
-                <StyledTableCell component="th" scope="row">
-                    {row.date}
-                </StyledTableCell>
-                <StyledTableCell align="center">{row.se}</StyledTableCell>
-                <StyledTableCell align="center">{row.id}</StyledTableCell>
-                <StyledTableCell align="center">{row.platform}</StyledTableCell>
-                <StyledTableCell align="center">{row.version}</StyledTableCell>
-                <StyledTableCell align="center">{row.comments}</StyledTableCell>
-                <StyledTableCell align="center">{row.prlink}</StyledTableCell>
-                <StyledTableCell align="center">{row.size}</StyledTableCell>
-                <StyledTableCell align="center">{row.dificulty}</StyledTableCell>
-                <StyledTableCell align="center">{row.status}</StyledTableCell>
-                <StyledTableCell align="center">{row.reviewByBY}</StyledTableCell>
-                <StyledTableCell align="center">{row.reviewByAH}</StyledTableCell>
-                <StyledTableCell align="center">{row.reviewByHT}</StyledTableCell>
-                <StyledTableCell align="center"
-                    style={{
-                        display:'flex',
-                        flexDirection:'row',
-                        alignItems:'center',
-                        paddingTop:30
-                    }}>
-                    <Button startIcon={<EditIcon />}/>
-                    <Button startIcon={<HighlightOffIcon />} style={{color:'red'}}/>
-                </StyledTableCell>
-                </StyledTableRow>
-            ))}
-            </TableBody>
-        </Table>
-        </TableContainer>
     </div>
   );
 }

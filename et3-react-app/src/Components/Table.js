@@ -130,7 +130,7 @@ export default function FullFeaturedCrudGrid() {
       width: 180,
       editable: true
     },
-    { field: 'id', headerName: '#', type: 'number', editable: true },
+    { field: 'number', headerName: '#', type: 'number', editable: true },
     {
       field: 'platform',
       headerName: 'Platform',

@@ -3,6 +3,11 @@ import { Table, Popconfirm, Button, Space, Form, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import AddForm from './AddForm';
+import Button2 from '@mui/material/Button';
+import SaveIcon from '@mui/icons-material/Save';
+import EditIcon from '@mui/icons-material/Edit';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import CancelIcon from '@mui/icons-material/Close';
 
 const DataTable = () => {
   const [gridData, setGridData] = useState([]);
@@ -200,15 +205,12 @@ const DataTable = () => {
       editable: true,
       sorter: (a, b) => a.date.length - b.date.length,
       sortOrder: sortedInfo.columnKey === "date" && sortedInfo.order,
-      ...getColumnSearchProps("date"),
     },
     {
       title: "SE",
       dataIndex: "se",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.se.length - b.se.length,
-      sortOrder: sortedInfo.columnKey === "se" && sortedInfo.order,
       ...getColumnSearchProps("se"),
     },
     {
@@ -220,8 +222,6 @@ const DataTable = () => {
       dataIndex: "platform",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.platform.length - b.platform.length,
-      sortOrder: sortedInfo.columnKey === "platform" && sortedInfo.order,
       ...getColumnSearchProps("platform"),
     },
     {
@@ -229,17 +229,12 @@ const DataTable = () => {
       dataIndex: "version",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.version.length - b.version.length,
-      sortOrder: sortedInfo.columnKey === "version" && sortedInfo.order,
-      ...getColumnSearchProps("version"),
     },
     {
       title: "Comments",
       dataIndex: "comments",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.comments.length - b.comments.length,
-      sortOrder: sortedInfo.columnKey === "comments" && sortedInfo.order,
       ...getColumnSearchProps("comments"),
     },
     {
@@ -247,33 +242,22 @@ const DataTable = () => {
       dataIndex: "prlink",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.prlink.length - b.prlink.length,
-      sortOrder: sortedInfo.columnKey === "prlink" && sortedInfo.order,
-      ...getColumnSearchProps("prlink"),
     },
     {
       title: "size",
       dataIndex: "size",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.size.length - b.size.length,
-      sortOrder: sortedInfo.columnKey === "size" && sortedInfo.order,
-      ...getColumnSearchProps("size"),
     },{
       title: "dificulty",
       dataIndex: "dificulty",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.dificulty.length - b.dificulty.length,
-      sortOrder: sortedInfo.columnKey === "dificulty" && sortedInfo.order,
-      ...getColumnSearchProps("dificulty"),
     },{
       title: "status",
       dataIndex: "status",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.status.length - b.status.length,
-      sortOrder: sortedInfo.columnKey === "status" && sortedInfo.order,
       ...getColumnSearchProps("status"),
     },
     {
@@ -281,27 +265,18 @@ const DataTable = () => {
       dataIndex: "reviewByBY",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.reviewByBY.length - b.reviewByBY.length,
-      sortOrder: sortedInfo.columnKey === "reviewByBY" && sortedInfo.order,
-      ...getColumnSearchProps("reviewByBY"),
     },
     {
         title: "Review by AH",
         dataIndex: "reviewByAH",
         align: "center",
         editable: true,
-        sorter: (a, b) => a.reviewByAH.length - b.reviewByAH.length,
-        sortOrder: sortedInfo.columnKey === "reviewByAH" && sortedInfo.order,
-        ...getColumnSearchProps("reviewByAH"),
       },
       {
         title: "Review by HT",
         dataIndex: "reviewByHT",
         align: "center",
         editable: true,
-        sorter: (a, b) => a.reviewByHT.length - b.reviewByHT.length,
-        sortOrder: sortedInfo.columnKey === "reviewByHT" && sortedInfo.order,
-        ...getColumnSearchProps("reviewByHT"),
       },
     {
       title: "Actions",
@@ -315,29 +290,23 @@ const DataTable = () => {
               title="Sure to delete?"
               onConfirm={() => handleDelete(record)}
             >
-              <Button type="primary" disabled={editable} danger>
-                Delete
-              </Button>
+              <Button2 startIcon={<HighlightOffIcon />} style={{color:'red'}}/>
             </Popconfirm>
             {editable ? (
               <span>
                 <Space size="middle">
-                  <Button
+                  <Button2
+                    startIcon={<SaveIcon />}
                     onClick={(e) => save(record.key)}
-                    type="primary"
                     style={{ marginRight: 8 }}
-                  >
-                    Save
-                  </Button>
+                  />
                   <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                    <Button>Cancel</Button>
+                    <Button2 startIcon={<CancelIcon />}/>
                   </Popconfirm>
                 </Space>
               </span>
             ) : (
-              <Button onClick={() => edit(record)} type="primary">
-                Edit
-              </Button>
+              <Button2 startIcon={<EditIcon />} onClick={() => edit(record)}/>
             )}
           </Space>
         ) : null;
@@ -388,7 +357,7 @@ const DataTable = () => {
   };
 
   return (
-    <div>
+    <div style={{padding:20 ,backgroundColor:'#ececec'}}>
       <Space style={{ marginBottom: 16 }}>
         <Input
           placeholder="Enter Search Text"
@@ -400,7 +369,6 @@ const DataTable = () => {
         <Button type="primary" onClick={globalSearch}>
           Search
         </Button>
-        <Button onClick={clearAll}>Clear All</Button>
       </Space>
       <Form form={form} component={false}>
         <Table
@@ -424,6 +392,7 @@ const DataTable = () => {
           onChange={handleChange}
         />
       </Form>
+      <Button onClick={clearAll} style={{marginTop:5,marginBottom:30,marginRight:1400,backgroundColor:'red',color:'white',borderRadius:5,fontWeight:500}}>Clear All</Button>
       <AddForm setRow={setRow}/>
     </div>
   );

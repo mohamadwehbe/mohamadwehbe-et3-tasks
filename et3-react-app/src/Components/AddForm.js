@@ -13,6 +13,12 @@ import FormLabel from '@mui/material/FormLabel';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DatePicker from '@mui/lab/DatePicker';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import et3img from '../et3img.jpg';
 
 export default function BasicTextFields({setRow}) {
     const [id,setId] = useState(1);
@@ -29,6 +35,7 @@ export default function BasicTextFields({setRow}) {
     const [comments, setComments] = useState('');
     const [prlink, setPrlink] = useState('');
     const [added,setAdded] = useState(false);
+    const [open, setOpen] = useState(false);
 
     useEffect(()=>{
         if(added) {
@@ -48,7 +55,19 @@ export default function BasicTextFields({setRow}) {
         }
     },[added])
 
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = () => {
+        setOpen(false);
+      };
+
     const handleSave = async()=>{
+        if(date ==='' || se ==='' || id ==='' || platform ==='' || version ==='' || prlink ==='' || size ==='' || dificulty ===''){
+            handleClickOpen();
+            return;
+        }
         let prevID = id;
         prevID = prevID + 1;
         setId(prevID);
@@ -74,7 +93,7 @@ export default function BasicTextFields({setRow}) {
           label="Date"
           value={date}
           onChange={(newValue) => {
-            setDate(newValue);
+            setDate(newValue.toString());
           }}
           renderInput={(params) => <TextField {...params} helperText={null} />}
         />
@@ -233,6 +252,24 @@ export default function BasicTextFields({setRow}) {
                 onClick={handleSave}
                 style={{fontWeight:'bold',backgroundColor:'black',marginBottom:10,width:20}}
             >Add</Button>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title"><img src={et3img} alt="img" style={{marginLeft:140,width:'20%'}} /></DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description" style={{marginLeft:40,color:'black'}}>
+                Please fill in all the required fields
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={handleClose} style={{color:'black',fontWeight:600}}>
+                    Ok
+                </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     </div>
   );

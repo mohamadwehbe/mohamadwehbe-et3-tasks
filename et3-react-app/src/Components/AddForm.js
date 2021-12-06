@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState,useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -14,33 +14,50 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DatePicker from '@mui/lab/DatePicker';
 
-export default function BasicTextFields({rows,setRows,row,setRow,setAdd}) {
-    let preId =0;
-    const [date, setDate] = React.useState('');
-    const [platform, setPlatform] = React.useState('');
-    const [se, setSE] = React.useState('');
-    const [version, setVersion] = React.useState('');
-    const [size, setSize] = React.useState('');
-    const [dificulty, setDificulty] = React.useState('');
-    const [status, setStatus] = React.useState('');
-    const [reviewByBY, setReviewByBY] = React.useState('');
-    const [reviewByAH, setReviewByAH] = React.useState('');
-    const [reviewByHT, setReviewByHT] = React.useState('');
-    const [comments, setComments] = React.useState('');
-    const [prlink, setPrlink] = React.useState('');
+export default function BasicTextFields({setRow}) {
+    const [id,setId] = useState(1);
+    const [date, setDate] = useState('');
+    const [platform, setPlatform] = useState('');
+    const [se, setSE] = useState('');
+    const [version, setVersion] = useState('');
+    const [size, setSize] = useState('');
+    const [dificulty, setDificulty] = useState('');
+    const [status, setStatus] = useState('');
+    const [reviewByBY, setReviewByBY] = useState('');
+    const [reviewByAH, setReviewByAH] = useState('');
+    const [reviewByHT, setReviewByHT] = useState('');
+    const [comments, setComments] = useState('');
+    const [prlink, setPrlink] = useState('');
+    const [added,setAdded] = useState(false);
 
-    const handleSave = ()=>{
-        const id = preId + 1;
-        setRow({date,id,platform,prlink,comments,se,version,size,dificulty,status,reviewByBY,reviewByAH,reviewByHT});
-        rows.push(row);
-        setRows(rows);
-        preId = id ;
-        setAdd(false);
+    useEffect(()=>{
+        if(added) {
+            setDate('')
+            setSE('')
+            setPlatform('')
+            setVersion('')
+            setComments('')
+            setPrlink('')
+            setSize('')
+            setDificulty('')
+            setStatus('')
+            setReviewByBY('')
+            setReviewByAH('')
+            setReviewByHT('')
+            setAdded(false)
+        }
+    },[added])
+
+    const handleSave = async()=>{
+        let prevID = id;
+        prevID = prevID + 1;
+        setId(prevID);
+        setRow({date, se, id, platform, version, comments, prlink, size, dificulty, status, reviewByBY, reviewByAH, reviewByHT});
+        setAdded(true)
     }
 
   return (
-    <div>
-        <div style={{fontSize:30,fontWeight:'bold',margin:10}} >Add Row</div>
+    <div style={{border:'2px solid #000',borderRadius:5,marginTop:10}}>
         <Box
         component="form"
         sx={{
@@ -48,13 +65,13 @@ export default function BasicTextFields({rows,setRows,row,setRow,setAdd}) {
         }}
         noValidate
         autoComplete="off"
-        style={{border:'2px solid #000',borderRadius:5,padding:20,marginBottom:10}}
+        style={{display:'flex', flexDirection:'row', alignItems:'center'}}
         >
         <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
           openTo="year"
           views={['year', 'month', 'day']}
-          label="Year, month and date"
+          label="Date"
           value={date}
           onChange={(newValue) => {
             setDate(newValue);
@@ -214,13 +231,8 @@ export default function BasicTextFields({rows,setRows,row,setRow,setAdd}) {
             <Button
                 variant="contained"
                 onClick={handleSave}
-                style={{fontWeight:'bold',backgroundColor:'black'}}
-            >Save</Button>
-            <Button
-                variant="contained"
-                onClick={()=>setAdd(false)}
-                style={{fontWeight:'bold',backgroundColor:'black'}}
-            >Cancel</Button>
+                style={{fontWeight:'bold',backgroundColor:'black',marginBottom:10,width:20}}
+            >Add</Button>
         </div>
     </div>
   );

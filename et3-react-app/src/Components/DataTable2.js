@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table, Popconfirm, Button, Space, Form, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
+import AddForm from './AddForm';
 
 const DataTable = () => {
   const [gridData, setGridData] = useState([]);
@@ -14,40 +15,21 @@ const DataTable = () => {
   const [searchedCol, setSearchedCol] = useState("");
   let [filteredInfo, setFilteredInfo] = useState({});
   let [filteredData] = useState();
+  const [row,setRow] = useState();
 
   useEffect(() => {
     loadData();
   }, []);
 
+  useEffect(()=>{
+     if(row) {
+         setGridData(gridData.concat(row))
+     }
+  },[row])
+
   const loadData = async () => {
     setLoading(true);
-    setGridData([{
-      id:'1',
-      se:'MW',
-      date: 'date',
-      platform: 'mobile',
-      version: '1.8.0',
-      comments: '',
-      prlink: 'https://github.com/mohamadwehbe/et3-task',
-      size: 'small',
-      dificulty: 'easy',
-      status: 'merged',
-      review: 'yes/no'
-    },
-    {
-      id:'2',
-      se:'AC',
-      date: 'date',
-      platform: 'app',
-      version: '1.8.0',
-      comments: '',
-      prlink: 'https://github.com/mohamadwehbe/et3-task',
-      size: 'small',
-      dificulty: 'hard',
-      status: 'no',
-      review: 'no'
-    }
-  ]);
+    setGridData([]);
     setLoading(false);
   };
 
@@ -141,7 +123,7 @@ const DataTable = () => {
       size: '',
       dificulty: '',
       status: '',
-      review: '',
+      reviewByBY: '', reviewByAH:'', reviewByHT:'',
       ...record,
     });
     setEditingKey(record.key);
@@ -295,14 +277,32 @@ const DataTable = () => {
       ...getColumnSearchProps("status"),
     },
     {
-      title: "review",
-      dataIndex: "review",
+      title: "Review by BY",
+      dataIndex: "reviewByBY",
       align: "center",
       editable: true,
-      sorter: (a, b) => a.review.length - b.review.length,
-      sortOrder: sortedInfo.columnKey === "review" && sortedInfo.order,
-      ...getColumnSearchProps("review"),
+      sorter: (a, b) => a.reviewByBY.length - b.reviewByBY.length,
+      sortOrder: sortedInfo.columnKey === "reviewByBY" && sortedInfo.order,
+      ...getColumnSearchProps("reviewByBY"),
     },
+    {
+        title: "Review by AH",
+        dataIndex: "reviewByAH",
+        align: "center",
+        editable: true,
+        sorter: (a, b) => a.reviewByAH.length - b.reviewByAH.length,
+        sortOrder: sortedInfo.columnKey === "reviewByAH" && sortedInfo.order,
+        ...getColumnSearchProps("reviewByAH"),
+      },
+      {
+        title: "Review by HT",
+        dataIndex: "reviewByHT",
+        align: "center",
+        editable: true,
+        sorter: (a, b) => a.reviewByHT.length - b.reviewByHT.length,
+        sortOrder: sortedInfo.columnKey === "reviewByHT" && sortedInfo.order,
+        ...getColumnSearchProps("reviewByHT"),
+      },
     {
       title: "Actions",
       dataIndex: "actions",
@@ -424,6 +424,7 @@ const DataTable = () => {
           onChange={handleChange}
         />
       </Form>
+      <AddForm setRow={setRow}/>
     </div>
   );
 };

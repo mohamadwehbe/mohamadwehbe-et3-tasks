@@ -1,9 +1,7 @@
-import {useState, useEffect} from 'react';
-import './App.css';
-import DataTable from './Components/DataTable';
+import React , {useState, useEffect} from 'react';
 
-function App() {
-  const [row,setRow] = useState([]);
+export default function DataTable() {
+    const [row,setRow] = useState([]);
 
   useEffect(()=>{
     setRow([
@@ -39,12 +37,9 @@ function App() {
       },
     ])
   },[]);
-
   return (
-    <div className="App">
-      <DataTable/>
-    </div>
+    <>
+    
+    </>
   );
 }
-
-export default App;

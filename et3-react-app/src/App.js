@@ -1,11 +1,11 @@
 import './App.css';
-import DataTable2 from './Components/DataTable2';
+import DataTable from './Components/DataTable';
 
 function App() {
 
   return (
     <div className="App" >
-      <DataTable2/>
+      <DataTable/>
     </div>
   );
 }
